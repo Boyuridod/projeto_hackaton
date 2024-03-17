@@ -17,7 +17,7 @@ void main() async {
 
   runApp(
     MaterialApp(
-      theme: ThemeData.dark(),
+      theme: ThemeData(fontFamily: 'Poppins'),
       home: const HomePage(),
     ),
   );

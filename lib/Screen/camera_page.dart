@@ -121,7 +121,7 @@ class CameraPageState extends State<CameraPage> {
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets\\images\\FundoGradiente.png"),
+            image: AssetImage("lib\\assets\\images\\FundoGradiente.png"),
             fit: BoxFit.fill,
           ),
         ),

@@ -135,18 +135,32 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> header() {
     return [
+      // TODO Titulo chamativo
       const SizedBox(height: 30),
-      const Text(
-        'Olá,',
-        style: TextStyle(color: Colors.white, fontSize: 50),
-      ),
-      const Text(
-        'Ana Clara',
-        style: TextStyle(color: DefaultColors.greenText, fontSize: 50),
+      RichText(
+        text: const TextSpan(
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            height: 0.9,
+            color: Colors.white,
+            fontSize: 50,
+            fontWeight: FontWeight.bold,
+          ),
+          text: '',
+          children: <TextSpan>[
+            TextSpan(
+              text: "Olá,\n",
+            ),
+            TextSpan(
+              text: 'Ana Clara',
+              style: TextStyle(color: DefaultColors.greenText),
+            ),
+          ],
+        ),
       ),
       const SizedBox(height: 25),
       const Text(
-        'Como podemos ajudar?',
+        'Como podemos ajudar?', // TODO melhor texto
         style: TextStyle(color: Colors.white, fontSize: 20),
       ),
     ];
@@ -160,7 +174,7 @@ class _HomePageState extends State<HomePage> {
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets\\images\\FundoGradiente.png"),
+            image: AssetImage("lib\\assets\\images\\FundoGradiente.png"),
             fit: BoxFit.fill,
           ),
         ),
