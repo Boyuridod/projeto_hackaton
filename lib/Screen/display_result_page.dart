@@ -1,11 +1,21 @@
+import 'dart:convert';
 import 'dart:io' as io;
 
 import 'package:flutter/material.dart';
+import 'package:projeto_hackaton/models/label.dart';
 
 dynamic jsonResult;
 
+Map<String, double> result = {};
+
 void setJsonResult(dynamic json) {
   jsonResult = json;
+  var result = {
+    'Vírus do enrolamento': jsonResult['Curl'] as double,
+    'Ferrugem Bacteriana': jsonResult['Ferrugem Bacteriana'] as double,
+    'Fossarium Vult': jsonResult['FF'] as double,
+    'Saudável': jsonResult['Saudavel'] as double,
+  };
 }
 
 class DisplayResultPage extends StatefulWidget {
@@ -34,6 +44,17 @@ class _DisplayResultPageState extends State<DisplayResultPage> {
         fontWeight: fweight,
       ),
     );
+  }
+
+  MapEntry<String, double> mostProbable() {
+    MapEntry<String, double> mostP = result.entries.first;
+
+    for (var d in result.entries) {
+      if (d.value >= mostP.value) {
+        mostP = d;
+      }
+    }
+    return mostP;
   }
 
   @override
@@ -122,7 +143,7 @@ class _DisplayResultPageState extends State<DisplayResultPage> {
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Nome da praga',
+                  'Ferrugem Bacteriana',
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     fontSize: 22,
@@ -134,7 +155,7 @@ class _DisplayResultPageState extends State<DisplayResultPage> {
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "nome científico da praga",
+                  "hakopsora gossypii",
                   textAlign: TextAlign.start,
                   style: TextStyle(
                       fontSize: 18,
