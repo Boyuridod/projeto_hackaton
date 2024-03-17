@@ -1,36 +1,9 @@
-import 'dart:convert';
 import 'dart:io' as io;
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_hackaton/Screen/home_page.dart';
-import 'package:http/http.dart' as http;
-import 'package:http_parser/http_parser.dart';
-//import 'package:path/path.dart' as path;
-
-void uploadImage(io.File imageFile) async {
-  Map<String, String> headers = {
-    'Content-type': 'application/json',
-    'Accept': 'application/json',
-  };
-
-  var request = http.MultipartRequest(
-    'POST',
-    Uri.parse('http://172.16.31.98:5555/upload'),
-  );
-  request.files.add(
-    await http.MultipartFile.fromPath(
-      'image',
-      imageFile.path,
-      contentType: MediaType('image', 'jpg'),
-    ),
-  );
-
-  request.headers.addAll(headers);
-
-  var response = await request.send();
-  print(response.reasonPhrase);
-}
+import 'package:projeto_hackaton/backend/analyze_image_route.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({
@@ -106,30 +79,16 @@ class CameraPageState extends State<CameraPage> {
                     ),
                     const Spacer(),
                     buildMenuButton(
-                        icon: Icons.search,
-                        size: MediaQuery.of(context).size.height * 0.05,
-                        descricao: 'Identificar',
-                        onPressed: () async {
-                          //uploadImage(lastPictureTakenFile!);
-
-                          final rawData =
-                              lastPictureTakenFile!.readAsBytesSync();
-
-                          //aprint("como string:$rawData");
-
-                          //print(base64.encode(rawData));
-
-                          final response = await http.post(
-                            Uri.parse('http://172.16.31.98:5555/upload'),
-                            headers: <String, String>{
-                              'Content-Type': 'application/json; charset=UTF-8'
-                            },
-                            body: jsonEncode(
-                              <String, String>{'image': base64.encode(rawData)},
-                            ),
-                          );
-                          print('Response:${response.body}');
-                        }),
+                      icon: Icons.search,
+                      size: MediaQuery.of(context).size.height * 0.05,
+                      descricao: 'Identificar',
+                      onPressed: () async {
+                        //lastPictureTakenFile
+                        if (lastPictureTakenFile != null) {
+                          analyzeImage(lastPictureTakenFile!);
+                        }
+                      },
+                    ),
                     /*
                      
                     wrappedIconButton(
@@ -186,8 +145,8 @@ class CameraPageState extends State<CameraPage> {
           },
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       /*
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         
         backgroundColor: DefaultColors.green,
