@@ -9,6 +9,25 @@ final List<String> imgList = [
   'https://images.unsplash.com/photo-1658003920691-835a9d86c7da?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
 ];
 
+Widget wrappedIconButton({
+  void Function()? onPressed,
+  IconData? icon,
+  double? size,
+}) {
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: DefaultColors.green,
+      padding: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(27)),
+    ),
+    onPressed: onPressed,
+    child: Padding(
+      padding: const EdgeInsets.all(10),
+      child: Icon(icon, size: size, color: Colors.white),
+    ),
+  );
+}
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -65,22 +84,10 @@ class _HomePageState extends State<HomePage> {
   }) {
     return Column(
       children: [
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: DefaultColors.green,
-            padding: EdgeInsets.zero,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(27)),
-          ),
+        wrappedIconButton(
           onPressed: onPressed,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Icon(
-              icon,
-              size: MediaQuery.sizeOf(context).height * 0.07,
-              color: Colors.white,
-            ),
-          ),
+          icon: icon,
+          size: MediaQuery.of(context).size.height * 0.07,
         ),
         Text(descricao, style: const TextStyle(color: Colors.white)),
       ],
@@ -155,91 +162,94 @@ class _HomePageState extends State<HomePage> {
             fit: BoxFit.fill,
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ...header(),
-            /* 
-            ElevatedButton(
-                /*
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                )),
-               */
-                style: const ButtonStyle(),
-                onPressed: () => debugPrint('Abre anuncio'),
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.1279,
-                  width: MediaQuery.of(context).size.width * 0.8436,
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () => debugPrint('e'),
-                        icon: const Icon(Icons.arrow_circle_left_sharp),
-                      ),
-                      const Spacer(),
-                      IconButton(
-                        onPressed: () => debugPrint('e'),
-                        icon: const Icon(Icons.arrow_circle_left_sharp),
-                      ),
-                    ],
-                  ),
-                )),
-            */
-            Row(
-              children: [
-                buildMenuButton(
-                  onPressed: () async {
-                    await Navigator.push(
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ...header(),
+              /* 
+              ElevatedButton(
+                  /*
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  )),
+                 */
+                  style: const ButtonStyle(),
+                  onPressed: () => debugPrint('Abre anuncio'),
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.1279,
+                    width: MediaQuery.of(context).size.width * 0.8436,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () => debugPrint('e'),
+                          icon: const Icon(Icons.arrow_circle_left_sharp),
+                        ),
+                        const Spacer(),
+                        IconButton(
+                          onPressed: () => debugPrint('e'),
+                          icon: const Icon(Icons.arrow_circle_left_sharp),
+                        ),
+                      ],
+                    ),
+                  )),
+              */
+              Row(
+                children: [
+                  buildMenuButton(
+                    onPressed: () async {
+                      await Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
                               CameraPage(camera: cameras.first),
-                        ));
-                  },
-                  icon: Icons.camera_alt,
-                  descricao: 'Camêra',
-                ),
-                const Spacer(),
-                buildMenuButton(
-                  onPressed: () => debugPrint('Galeria'),
-                  icon: Icons.perm_media,
-                  descricao: 'Galeria',
-                ),
-                const Spacer(),
-                buildMenuButton(
-                  onPressed: () => debugPrint('Camera'),
-                  icon: Icons.perm_media,
-                  descricao: 'asda',
-                ),
-                const Spacer(),
-                buildMenuButton(
-                  onPressed: () => debugPrint('Camera'),
-                  icon: Icons.perm_media,
-                  descricao: 'wda',
-                ),
-              ],
-            ),
-            CarouselSlider(
-              carouselController: _carouselController,
-              items: imageSliders,
-              options: CarouselOptions(
-                viewportFraction: 1,
-                height: MediaQuery.of(context).size.height * 0.2,
-                aspectRatio: MediaQuery.of(context).size.aspectRatio,
-                enlargeCenterPage: true,
-                scrollDirection: Axis.horizontal,
-                autoPlay: true,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    _current = index;
-                  });
-                },
+                        ),
+                      );
+                    },
+                    icon: Icons.camera_alt,
+                    descricao: 'Camêra',
+                  ),
+                  const Spacer(),
+                  buildMenuButton(
+                    onPressed: () => debugPrint('Galeria'),
+                    icon: Icons.perm_media,
+                    descricao: 'Galeria',
+                  ),
+                  const Spacer(),
+                  buildMenuButton(
+                    onPressed: () => debugPrint('Camera'),
+                    icon: Icons.perm_media,
+                    descricao: 'asda',
+                  ),
+                  const Spacer(),
+                  buildMenuButton(
+                    onPressed: () => debugPrint('Camera'),
+                    icon: Icons.perm_media,
+                    descricao: 'wda',
+                  ),
+                ],
               ),
-            ),
-            carrouselIndicator(),
-          ],
+              CarouselSlider(
+                carouselController: _carouselController,
+                items: imageSliders,
+                options: CarouselOptions(
+                  viewportFraction: 1,
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  aspectRatio: MediaQuery.of(context).size.aspectRatio,
+                  enlargeCenterPage: true,
+                  scrollDirection: Axis.horizontal,
+                  autoPlay: true,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _current = index;
+                    });
+                  },
+                ),
+              ),
+              carrouselIndicator(),
+            ],
+          ),
         ),
       ),
     );
