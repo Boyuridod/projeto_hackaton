@@ -29,6 +29,7 @@ flutter:
 
   assets:
     - lib\assets\images\FundoGradiente.png
+    - lib\assets\images\Logo.png
 
   fonts:
     - family: Poppins

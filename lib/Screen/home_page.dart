@@ -136,6 +136,14 @@ class _HomePageState extends State<HomePage> {
   List<Widget> header() {
     return [
       // TODO Titulo chamativo
+      Center(
+        child: Image.asset(
+          'lib\\assets\\images\\Logo.png',
+          width: MediaQuery.sizeOf(context).width * 149 / 390,
+          height: MediaQuery.sizeOf(context).height * 57 / 844,
+        ),
+      ),
+
       const SizedBox(height: 30),
       RichText(
         text: const TextSpan(
