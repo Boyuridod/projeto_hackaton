@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> {
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("lib\\Images\\FundoGradiente.png"),
+            image: AssetImage("assets\\images\\FundoGradiente.png"),
             fit: BoxFit.fill,
           ),
         ),

@@ -26,6 +26,3 @@ flutter:
 
   assets:
     - assets\images\FundoGradiente.png
-         
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
