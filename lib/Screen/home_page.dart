@@ -213,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                     descricao: 'Camêra',
                     size: MediaQuery.of(context).size.height * 0.07,
                   ),
-                  const Spacer(),
+                  const SizedBox(width: 10),
                   buildMenuButton(
                     onPressed: () => debugPrint('Galeria'),
                     icon: Icons.perm_media,
@@ -221,19 +221,6 @@ class _HomePageState extends State<HomePage> {
                     size: MediaQuery.of(context).size.height * 0.07,
                   ),
                   const Spacer(),
-                  buildMenuButton(
-                    onPressed: () => debugPrint('Camera'),
-                    icon: Icons.perm_media,
-                    descricao: 'asda',
-                    size: MediaQuery.of(context).size.height * 0.07,
-                  ),
-                  const Spacer(),
-                  buildMenuButton(
-                    onPressed: () => debugPrint('Camera'),
-                    icon: Icons.perm_media,
-                    descricao: 'wda',
-                    size: MediaQuery.of(context).size.height * 0.07,
-                  ),
                 ],
               ),
               CarouselSlider(
