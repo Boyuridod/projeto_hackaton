@@ -87,7 +87,9 @@ class CameraPageState extends State<CameraPage> {
                         if (_currentImage != null) {
                           io.File img = _currentImage!;
 
-                          await analyzeImage(_currentImage!);
+                          final json = await analyzeImage(_currentImage!);
+
+                          setJsonResult(json);
 
                           // ignore: use_build_context_synchronously
                           await Navigator.push(
@@ -97,7 +99,6 @@ class CameraPageState extends State<CameraPage> {
                                   DisplayResultPage(image: img),
                             ),
                           );
-                          
                         }
                       },
                     ),

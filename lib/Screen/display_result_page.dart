@@ -2,6 +2,12 @@ import 'dart:io' as io;
 
 import 'package:flutter/material.dart';
 
+dynamic jsonResult;
+
+void setJsonResult(dynamic json) {
+  jsonResult = json;
+}
+
 class DisplayResultPage extends StatefulWidget {
   const DisplayResultPage({
     Key? key,
@@ -54,12 +60,18 @@ class _DisplayResultPageState extends State<DisplayResultPage> {
                     child: Column(
                       children: [
                         buildLabel(
-                          name: 'Teste1',
-                          percent: 90,
+                          name: 'Vírus do enrolamento',
+                          percent: jsonResult['Curl'],
                           fweight: FontWeight.bold,
                         ),
-                        buildLabel(name: 'Teste1', percent: 90),
-                        buildLabel(name: 'Teste1', percent: 90),
+                        buildLabel(
+                          name: 'Ferrugem Bacteriana',
+                          percent: jsonResult['Ferrugem Bacteriana'],
+                        ),
+                        buildLabel(
+                          name: 'Fossarium Vult',
+                          percent: jsonResult['FF'],
+                        ),
                       ],
                     ),
                   ),
