@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_hackaton/Screen/home_page.dart';
+import 'package:http/http.dart' as http;
 
 var cameras = <CameraDescription>[];
 
@@ -14,6 +15,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   cameras = await availableCameras();
+
+  print(await http.get(Uri.parse('http://172.16.31.98:5555/upload')));
 
   runApp(
     MaterialApp(
