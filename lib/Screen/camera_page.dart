@@ -89,30 +89,6 @@ class CameraPageState extends State<CameraPage> {
                         }
                       },
                     ),
-                    /*
-                     
-                    wrappedIconButton(
-                      icon: Icons.accessible_sharp,
-                      size: MediaQuery.of(context).size.height * 0.05,
-                    ),
-                    const Spacer(),
-                    wrappedIconButton(
-                      icon: Icons.camera_alt,
-                      onPressed: () async {
-                        final imageXFile = await _controller.takePicture();
-
-                        setState(() {
-                          lastPictureTaken = Image.file(File(imageXFile.path));
-                        });
-                      },
-                      size: MediaQuery.of(context).size.height * 0.07,
-                    ),
-                    const Spacer(),
-                    wrappedIconButton(
-                      icon: Icons.arrow_back_ios_rounded,
-                      size: MediaQuery.of(context).size.height * 0.05,
-                    ),
-                     */
                   ],
                 ),
               ),
@@ -145,33 +121,6 @@ class CameraPageState extends State<CameraPage> {
           },
         ),
       ),
-      /*
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        
-        backgroundColor: DefaultColors.green,
-        onPressed: () async {
-          try {
-            await _initializeControllerFuture;
-    
-            final image = await _controller.takePicture();
-    
-            if (!context.mounted) return;
-    
-            await Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => DisplayPictureScreen(
-                  imagePath: image.path,
-                ),
-              ),
-            );
-          } catch (e) {
-            print(e);
-          }
-        },
-        child: const Icon(Icons.camera_alt),
-      ),
-      */
     );
   }
 }
