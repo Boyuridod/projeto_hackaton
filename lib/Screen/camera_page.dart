@@ -2,6 +2,7 @@ import 'dart:io' as io;
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto_hackaton/Screen/display_result_page.dart';
 import 'package:projeto_hackaton/Screen/home_page.dart';
 import 'package:projeto_hackaton/backend/analyze_image_route.dart';
 
@@ -21,7 +22,7 @@ class CameraPageState extends State<CameraPage> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
 
-  io.File? lastPictureTakenFile;
+  io.File? _currentImage;
 
   @override
   void initState() {
@@ -48,9 +49,9 @@ class CameraPageState extends State<CameraPage> {
         padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
         child: Column(
           children: [
-            lastPictureTakenFile == null
+            _currentImage == null
                 ? CameraPreview(_controller)
-                : Image.file(lastPictureTakenFile!),
+                : Image.file(_currentImage!),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
             Expanded(
               child: Padding(
@@ -70,7 +71,7 @@ class CameraPageState extends State<CameraPage> {
                       onPressed: () async {
                         final imageXFile = await _controller.takePicture();
                         setState(() {
-                          lastPictureTakenFile = io.File(imageXFile.path);
+                          _currentImage = io.File(imageXFile.path);
                         });
                         print(imageXFile.path);
                       },
@@ -83,9 +84,20 @@ class CameraPageState extends State<CameraPage> {
                       size: MediaQuery.of(context).size.height * 0.05,
                       descricao: 'Identificar',
                       onPressed: () async {
-                        //lastPictureTakenFile
-                        if (lastPictureTakenFile != null) {
-                          analyzeImage(lastPictureTakenFile!);
+                        if (_currentImage != null) {
+                          io.File img = _currentImage!;
+
+                          await analyzeImage(_currentImage!);
+
+                          // ignore: use_build_context_synchronously
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DisplayResultPage(image: img),
+                            ),
+                          );
+                          
                         }
                       },
                     ),

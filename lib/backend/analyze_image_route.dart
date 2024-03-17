@@ -9,7 +9,7 @@ Future<String> analyzeImage(File image) async {
   final encodedData = base64.encode(rawData);
 
   final response = await http.post(
-    Uri.parse('http://172.16.31.98:5555/upload'),
+    Uri.parse('http://172.16.31.98:5555/ai_vision'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8'
     },
