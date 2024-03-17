@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
       children: [
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color.fromRGBO(71, 160, 2, 100),
+            backgroundColor: DefaultColors.green,
             padding: EdgeInsets.zero,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(27)),
@@ -93,12 +93,7 @@ class _HomePageState extends State<HomePage> {
         width: imgList.length * 25,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: const Color.fromRGBO(
-            217,
-            217,
-            217,
-            100,
-          ),
+          color: DefaultColors.grey,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -138,8 +133,7 @@ class _HomePageState extends State<HomePage> {
       ),
       const Text(
         'Ana Clara',
-        style:
-            TextStyle(color: Color.fromRGBO(162, 237, 43, 100), fontSize: 50),
+        style: TextStyle(color: DefaultColors.greenText, fontSize: 50),
       ),
       const SizedBox(height: 25),
       const Text(
@@ -200,7 +194,8 @@ class _HomePageState extends State<HomePage> {
                     await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CameraPage(camera: cameras.first),
+                          builder: (context) =>
+                              CameraPage(camera: cameras.first),
                         ));
                   },
                   icon: Icons.camera_alt,

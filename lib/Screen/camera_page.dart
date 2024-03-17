@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto_hackaton/main.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({
@@ -22,12 +23,8 @@ class CameraPageState extends State<CameraPage> {
   @override
   void initState() {
     super.initState();
-    // To display the current output from the Camera,
-    // create a CameraController.
     _controller = CameraController(
-      // Get a specific camera from the list of available cameras.
       widget.camera,
-      // Define the resolution to use.
       ResolutionPreset.medium,
     );
 
@@ -62,6 +59,7 @@ class CameraPageState extends State<CameraPage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: DefaultColors.green,
         onPressed: () async {
           try {
             await _initializeControllerFuture;
