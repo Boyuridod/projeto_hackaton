@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto_hackaton/Screen/camera_page.dart';
+import 'package:projeto_hackaton/main.dart';
 
 final List<String> imgList = [
   'https://images.unsplash.com/photo-1660613757833-f2b6eccbb544?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -137,7 +139,7 @@ class _HomePageState extends State<HomePage> {
       const Text(
         'Ana Clara',
         style:
-            TextStyle(fontFamily:'PoppinsBlack', color: Color.fromRGBO(162, 237, 43, 100), fontSize: 50),
+            TextStyle(color: Color.fromRGBO(162, 237, 43, 100), fontSize: 50),
       ),
       const SizedBox(height: 25),
       const Text(
@@ -194,7 +196,13 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: [
                 buildMenuButton(
-                  onPressed: () => debugPrint('Camera'),
+                  onPressed: () async {
+                    await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CameraPage(camera: cameras.first),
+                        ));
+                  },
                   icon: Icons.camera_alt,
                   descricao: 'Camêra',
                 ),
