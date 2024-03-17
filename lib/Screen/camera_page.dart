@@ -44,17 +44,44 @@ class CameraPageState extends State<CameraPage> {
   Widget _buildPageColumn() {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 5, 0, 25),
+        padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
         child: Column(
           children: [
             lastPictureTaken ?? CameraPreview(_controller),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.fromLTRB(25, 28, 25, 28),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    buildMenuButton(
+                      icon: Icons.perm_media,
+                      descricao: 'Galeria',
+                      size: MediaQuery.of(context).size.height * 0.05,
+                    ),
+                    const Spacer(),
+                    buildMenuButton(
+                      icon: Icons.camera_alt,
+                      onPressed: () async {
+                        final imageXFile = await _controller.takePicture();
+
+                        setState(() {
+                          lastPictureTaken = Image.file(File(imageXFile.path));
+                        });
+                      },
+                      size: MediaQuery.of(context).size.height * 0.07,
+                      descricao: 'Tirar foto',
+                    ),
+                    const Spacer(),
+                    buildMenuButton(
+                      icon: Icons.search,
+                      size: MediaQuery.of(context).size.height * 0.05,
+                      descricao: 'Identificar',
+                    ),
+                    /*
+                     
                     wrappedIconButton(
                       icon: Icons.accessible_sharp,
                       size: MediaQuery.of(context).size.height * 0.05,
@@ -76,6 +103,7 @@ class CameraPageState extends State<CameraPage> {
                       icon: Icons.arrow_back_ios_rounded,
                       size: MediaQuery.of(context).size.height * 0.05,
                     ),
+                     */
                   ],
                 ),
               ),

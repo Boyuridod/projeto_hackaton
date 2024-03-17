@@ -9,6 +9,25 @@ final List<String> imgList = [
   'https://images.unsplash.com/photo-1658003920691-835a9d86c7da?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
 ];
 
+Widget buildMenuButton({
+  void Function()? onPressed,
+  required IconData icon,
+  required String descricao,
+  double size = 25,
+}) {
+  return Column(
+    children: [
+      wrappedIconButton(
+        onPressed: onPressed,
+        icon: icon,
+        size: size,
+      ),
+      const SizedBox(height: 10),
+      Text(descricao, style: const TextStyle(color: Colors.white)),
+    ],
+  );
+}
+
 Widget wrappedIconButton({
   void Function()? onPressed,
   IconData? icon,
@@ -76,23 +95,6 @@ class _HomePageState extends State<HomePage> {
 
   int _current = 0;
   final _carouselController = CarouselController();
-
-  Widget buildMenuButton({
-    required void Function() onPressed,
-    required IconData icon,
-    required String descricao,
-  }) {
-    return Column(
-      children: [
-        wrappedIconButton(
-          onPressed: onPressed,
-          icon: icon,
-          size: MediaQuery.of(context).size.height * 0.07,
-        ),
-        Text(descricao, style: const TextStyle(color: Colors.white)),
-      ],
-    );
-  }
 
   Widget carrouselIndicator() {
     return Center(
@@ -209,24 +211,28 @@ class _HomePageState extends State<HomePage> {
                     },
                     icon: Icons.camera_alt,
                     descricao: 'Camêra',
+                    size: MediaQuery.of(context).size.height * 0.07,
                   ),
                   const Spacer(),
                   buildMenuButton(
                     onPressed: () => debugPrint('Galeria'),
                     icon: Icons.perm_media,
                     descricao: 'Galeria',
+                    size: MediaQuery.of(context).size.height * 0.07,
                   ),
                   const Spacer(),
                   buildMenuButton(
                     onPressed: () => debugPrint('Camera'),
                     icon: Icons.perm_media,
                     descricao: 'asda',
+                    size: MediaQuery.of(context).size.height * 0.07,
                   ),
                   const Spacer(),
                   buildMenuButton(
                     onPressed: () => debugPrint('Camera'),
                     icon: Icons.perm_media,
                     descricao: 'wda',
+                    size: MediaQuery.of(context).size.height * 0.07,
                   ),
                 ],
               ),
